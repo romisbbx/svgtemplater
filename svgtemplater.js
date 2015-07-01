@@ -1,7 +1,7 @@
 function icon(name, options, path) {
   var options = options || {};
-  var size    = options.size ? ' icon--' + options.size : '';
-  var classes = 'icon icon--' + name + size + ' ' + (options.class || '');
+  var size    = options.size ? ' icon-' + options.size : '';
+  var classes = 'icon icon-' + name + size + ' ' + (options.class || '');
   classes     = classes.trim();
 
   var icon =  '<svg class="icon-svg">' +
