@@ -1,11 +1,13 @@
-function icon(name, options, path) {
+function icon(name, params, options) {
+  var params = params || {};
   var options = options || {};
-  var size    = options.size ? ' icon-' + options.size : '';
-  var classes = 'icon icon-' + name + size + ' ' + (options.class || '');
-  classes     = classes.trim();
+  var className = options.className ? options.className : 'icon';
+  var size = params.size ? ' ' + className + '-' + params.size : '';
+  var classes = className + ' ' + className + '-' + name + size + ' ' + (params.class || '');
+  classes = classes.trim();
 
-  var icon =  '<svg class="icon-svg">' +
-      '<use xlink:href="' + (path ? path : '') + '#' + name + '-icon" />' +
+  var icon =  '<svg class="' + className + '-svg">' +
+      '<use xlink:href="' + (options.path ? options.path : '') + '#' + name + '-icon" />' +
       '</svg>';
 
   var html =  '<div class="' + classes + '">' + icon + '</div>';
@@ -27,7 +29,7 @@ function buildParamsFromString(string) {
   return params;
 }
 
-function replaceIconTags(src, path) {
+function replaceIconTags(src, options) {
   var match, tag, params, name;
   var html = src.toString();
   var iconRegexp = /<icon\s+([-=\w\d'"\s]+)\s*\/?>(<\/icon>)?/gi;
@@ -39,7 +41,7 @@ function replaceIconTags(src, path) {
 
     delete params.name;
 
-    html = html.replace(tag, icon(name, params, path));
+    html = html.replace(tag, icon(name, params, options));
   }
 
   return html;
