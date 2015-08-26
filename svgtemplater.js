@@ -6,11 +6,11 @@ function icon(name, params, options) {
   var classes = className + ' ' + className + '-' + name + size + ' ' + (params.class || '');
   classes = classes.trim();
 
-  var icon =  '<svg class="' + className + '-svg">' +
-      '<use xlink:href="' + (options.path ? options.path : '') + '#' + name + '-icon" />' +
+  var icon =  '<svg class=\'' + className + '-svg\'>' +
+      '<use xlink:href=\'' + (options.path ? options.path : '') + '#' + name + '-icon\' />' +
       '</svg>';
 
-  var html =  '<div class="' + classes + '">' + icon + '</div>';
+  var html =  '<div class=\'' + classes + '\'>' + icon + '</div>';
 
   return html;
 }
@@ -18,7 +18,7 @@ function icon(name, params, options) {
 function buildParamsFromString(string) {
   var match, attr, value;
   var params = {};
-  var attrsRegexp = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/gi;
+  var attrsRegexp = /(\S+)=[\\"']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/gi;
 
   while (match = attrsRegexp.exec(string)) {
     attr  = match[1];
@@ -32,7 +32,7 @@ function buildParamsFromString(string) {
 function replaceIconTags(src, options) {
   var match, tag, params, name;
   var html = src.toString();
-  var iconRegexp = /<icon\s+([-=\w\d'"\s]+)\s*\/?>(<\/icon>)?/gi;
+  var iconRegexp = /<icon\s+([\\\-=\w\d'"\s]+)\s*\/?>(<\/icon>)?/gi;
 
   while (match = iconRegexp.exec(html)) {
     tag     = match[0];
